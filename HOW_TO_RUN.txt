@@ -1,0 +1,52 @@
+# How to Run the Student Attendance Tracking System
+
+This project is built with Next.js and uses Kinde for authentication and SQLite for the database.
+
+## Prerequisites
+- **Node.js**: Ensure you have Node.js (v18 or higher) installed on your machine.
+- **Kinde Account**: You need a Kinde account to set up authentication.
+
+## Step 1: Set up Environment Variables
+Open the `.env.local` file in the root directory and fill in your Kinde credentials:
+
+```env
+KINDE_CLIENT_ID="your_client_id"
+KINDE_CLIENT_SECRET="your_client_secret"
+KINDE_ISSUER_URL="https://your_domain.kinde.com"
+KINDE_SITE_URL="http://localhost:3000"
+KINDE_POST_LOGOUT_REDIRECT_URL="http://localhost:3000"
+KINDE_POST_LOGIN_REDIRECT_URL="http://localhost:3000/dashboard"
+```
+
+## Step 2: Run the Project
+
+### Option A: Using the Batch File (Windows only)
+The easiest way to run the project on Windows is to use the provided batch file. It will automatically install dependencies, initialize the database, and start the server.
+
+1. Double-click the `run.bat` file in the project folder.
+2. Wait for the terminal to show that the application is running.
+
+### Option B: Manual Commands (All Platforms)
+If you prefer using the terminal or are on a non-Windows system, follow these steps:
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Initialize the Database**:
+   ```bash
+   node scripts/init-db.js
+   ```
+
+3. **Start the Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+## Step 3: Access the Application
+Once the server is running, open your web browser and navigate to:
+[http://localhost:3000](http://localhost:3000)
+
+---
+**Note:** If you encounter any issues with the database, ensure that `sqlite.db` is present in the root folder after running the initialization script.

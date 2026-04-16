@@ -1,0 +1,102 @@
+================================================================================
+        ADVANCED STUDENT ATTENDANCE & ANALYTICS SYSTEM (FYP EDITION)
+================================================================================
+
+1. PROJECT OVERVIEW
+-------------------
+This is a premium, commercial-grade Student Attendance Tracking System designed 
+to overhaul traditional attendance marking with AI-driven insights, smart 
+verification (QR + Geofencing), and a sophisticated role-based management dashboard.
+
+2. TECHNOLOGY STACK
+-------------------
+- Frontend: Next.js 14, Tailwind CSS, Framer Motion
+- Backend: Next.js API Routes (Serverless)
+- Database: SQLite with Drizzle ORM
+- Intelligence: AI-Simulated Behavioral Analysis & Predictive Trends
+- Verification: Web Speech API, Geolocation API, QR Engine
+- Reports: jsPDF, Recharts, Ag-Grid
+
+3. SYSTEM ARCHITECTURE & WORKING
+--------------------------------
+The system operates on three primary layers:
+A. DATA LAYER: A relational SQLite database managing Students, Faculty, Subjects, 
+   Timetables, Attendance Records, and Leave Requests.
+B. BUSINESS LOGIC LAYER: Handles Smart Verification (QR token validation, 
+   Geographical proximity checks) and the "At-Risk" AI prediction engine.
+C. PRESENTATION LAYER: A glassmorphism-based responsive UI with distinct 
+   workflows for Admins, Teachers, and Students.
+
+4. ENTITY RELATIONSHIP (ER) DIAGRAM
+-----------------------------------
+[ER DIAGRAM - CHEN NOTATION STYLE]
+
++------------+       +------------+       +--------------+
+|   GRADES   | <---+ |  STUDENTS  | <---+ | ATTENDANCE   |
++------------+  (1:N)+------------+  (1:N)+--------------+
+| id (PK)    |       | id (PK)    |       | id (PK)      |
+| name       |       | name       |       | studentId(FK)|
++------------+       | gradeId(FK)|       | date         |
+                     +------------+       | present(bool)|
++------------+                            +--------------+
+|  SUBJECTS  | <------------------+
++------------+                    |
+| id (PK)    |              +-----+------+
+| name       |              | TIMETABLE  |
+| gradeId(FK)| <------------+------------+
++------------+       (1:N)  | id (PK)    |
+                            | subject(FK)|
+                            | dayOfWeek  |
+                            | startTime  |
++------------+              +------------+
+|   LEAVES   |
++------------+
+| id (PK)    |
+| student(FK)|
+| startDate  |
+| status     |
++------------+
+
+5. DATA FLOW DIAGRAM (DFD)
+--------------------------
+[LEVEL 0 - CONTEXT DIAGRAM]
+(User) --[Input: Credentials/Attendance]--> [ATTENDANCE SYSTEM] --[Output: Reports/Stats]--> (Admin)
+
+[LEVEL 1 - PROCESS FLOW]
+1. USER LOGIN -> Role Identification (Admin/Teacher/Student)
+2. MARK ATTENDANCE -> Process: [Validate QR] -> [Check Geolocation] -> [Record in DB]
+3. ANALYZE TRENDS -> Process: [Fetch Last 30 Days] -> [AI Predictive Logic] -> [Output Graph]
+4. LEAVE REQUEST -> Process: [Submit Form] -> [Teacher Approval] -> [Update Status]
+
+6. HOW TO RUN THE PROJECT
+-------------------------
+Prerequisites: Node.js (v18+), npm
+
+STEP 1: CLONE & INSTALL
+   > git clone <repository_url>
+   > cd Student-Attendance-Tracking
+   > npm install
+
+STEP 2: DATABASE INITIALIZATION
+   This step creates the SQLite database and seeds it with relational data 
+   (Grades, Subjects, Faculty, etc.).
+   > node scripts/init-db.js
+
+STEP 3: RUN THE DEVELOPMENT SERVER
+   > npm run dev
+
+STEP 4: ACCESS
+   Open http://localhost:3000 in your browser.
+
+7. SYSTEM FEATURES
+------------------
+- Smart Verification: Prevents proxy attendance using GPS and expiring QR codes.
+- AI Assistant: Floating Chatbot (Smart助理) with voice command support.
+- Role-Based Access: Dedicated portals for Admin, Faculty, and Students.
+- Predictive Analytics: Detects students at risk (<75% attendance) automatically.
+- Digital Workflows: Paperless leave applications and real-time notifications.
+- Professional Exports: Export detailed attendance logs as PDF reports.
+
+================================================================================
+        END OF DOCUMENTATION - CREATED BY ANTIGRAVITY AI 助理
+================================================================================
